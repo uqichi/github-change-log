@@ -2,23 +2,31 @@
 
 slack_webhook_url=${SLACK_WEBHOOK_URL}
 
-body=${BODY}
+deploy_env=${DEPLOY_ENV}
+title=${TITLE:-notitle}
+value=${VALUE:-novalue}
 
 if [ -p /dev/stdin ]; then
-    body=$(cat -)
+    value=$(cat -)
 fi
+
+case "${deploy_env}" in
+  "dev" | "develop" ) env=Dev; color=#00adb9 ;;
+  "stg" | "staging" ) env=Stg; color=#f7ea00 ;;
+  "prd" | "production" ) env=Prd; color=#ff188a ;;
+esac
 
 data=`cat << EOF
   payload={
     "attachments":[
       {
-        "fallback":"Change log",
-        "pretext":"Change log",
-        "color":"#D00000",
+        "fallback":"[${env}] Change log",
+        "pretext":"*_[${env}]_* Change log",
+        "color":"${color}",
         "fields":[
           {
-            "title":"v1.0.0",
-            "value":"${body}"
+            "title":"${title}",
+            "value":"${value}"
           }
         ]
       }
