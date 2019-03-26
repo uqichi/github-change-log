@@ -17,21 +17,24 @@ case "${env}" in
 esac
 
 data=`cat << EOF
-  payload={
-    "attachments":[
-      {
-        "fallback":"[${env}] Change log",
-        "pretext":"*_[${env}]_* Change log",
-        "color":"${color}",
-        "fields":[
-          {
-            "title":"${title}",
-            "value":"${value}"
-          }
-        ]
-      }
-    ]
-  }
+payload={
+  "attachments":[
+    {
+      "fallback":"[${env}] Change log",
+      "pretext":"*_[${env}]_* Change log",
+      "color":"${color}",
+      "fields":[
+        {
+          "title":"${title}",
+          "value":"${value}"
+        }
+      ]
+    }
+  ]
+}
 EOF`
 
-curl -X POST --data-urlencode "${data}" "${slack_webhook_url}"
+
+curl -X POST \
+  --data-urlencode "${data}" \
+  "${slack_webhook_url}"

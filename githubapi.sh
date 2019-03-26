@@ -1,11 +1,11 @@
 #!/bin/bash
 
-oauth_token=${GITHUB_OAUTH_TOKEN}
 owner=${GITHUB_OWNER}
 repo=${GITHUB_REPO}
+oauth_token=${GITHUB_OAUTH_TOKEN}
 endpoint=https://api.github.com/repos/${owner}/${repo}/releases
 
-tag_name=${TAG_NAME} # TODO: auto generate using latest stg release/v9.9.9
+tag_name=${TAG_NAME}
 target_branch=${TARGET_BRANCH:-master}
 body=${BODY}
 
@@ -23,6 +23,7 @@ data=`cat << EOF
   "prerelease": false
 }
 EOF`
+
 
 curl -X POST \
   --data "${data}" \
