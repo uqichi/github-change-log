@@ -16,7 +16,8 @@ RELEASE_LIST=$(git log --oneline --no-merges "${LAST_RELEASE_TAG}..${compare_bra
 
 IFS=$'\n'
 for line in $(echo "$RELEASE_LIST"); do
-    [[ ${line} =~ \(#[0-9]+\)$ ]] && echo "- $line"
+    #[[ ${line} =~ \(#[0-9]+\)$ ]] && echo "- $line"
+    echo "- $line"
 done
 
 echo "\nDiff: ${repository_url}/compare/${LAST_RELEASE_TAG}...${compare_branch}"
