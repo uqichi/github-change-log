@@ -2,7 +2,7 @@
 
 slack_webhook_url=${SLACK_WEBHOOK_URL}
 
-deploy_env=${DEPLOY_ENV}
+env=${ENV}
 title=${TITLE:-notitle}
 value=${VALUE:-novalue}
 
@@ -10,7 +10,7 @@ if [ -p /dev/stdin ]; then
     value=$(cat -)
 fi
 
-case "${deploy_env}" in
+case "${env}" in
   "dev" | "develop" ) env=Dev; color=#00adb9 ;;
   "stg" | "staging" ) env=Stg; color=#f7ea00 ;;
   "prd" | "production" ) env=Prd; color=#ff188a ;;
