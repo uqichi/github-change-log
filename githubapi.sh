@@ -5,9 +5,13 @@ owner=${GITHUB_OWNER}
 repo=${GITHUB_REPO}
 endpoint=https://api.github.com/repos/${owner}/${repo}/releases
 
-tag_name=${TAG_NAME}
+tag_name=${TAG_NAME} # TODO: auto generate using latest stg release/v9.9.9
 target_branch=${TARGET_BRANCH:-master}
 body=${BODY}
+
+if [ -p /dev/stdin ]; then
+    body=$(cat -)
+fi
 
 data=`cat << EOF
 {
