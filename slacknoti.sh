@@ -2,27 +2,23 @@
 
 slack_webhook_url=${SLACK_WEBHOOK_URL}
 
-if [[ -p /dev/stdin ]]; then
-    cat -
-else
-    echo $@
+body=${BODY}
+
+if [ -p /dev/stdin ]; then
+    body=$(cat -)
 fi
-
-exit
-
-value=$1
 
 data=`cat << EOF
   payload={
     "attachments":[
       {
-        "fallback":"fallback Test",
-        "pretext":"attachments Test",
+        "fallback":"Change log",
+        "pretext":"Change log",
         "color":"#D00000",
         "fields":[
           {
-            "title":"attachment01",
-            "value":"${value}"
+            "title":"v1.0.0",
+            "value":"${body}"
           }
         ]
       }
