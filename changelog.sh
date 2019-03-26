@@ -1,11 +1,11 @@
 #!/bin/bash
 
+owner=${GITHUB_OWNER}
+repo=${GITHUB_REPO}
 #${BRANCH}
 #${COMPARE_URL}
-#${PROJ_REPO}
-#${PROJ_USER}
 
-repository_url=https://github.com/uqichi/github-change-log
+repository_url=https://github.com/${owner}/${repo}
 compare_branch=develop
 
 echo "## Changes"
