@@ -7,7 +7,7 @@ repository_url=https://github.com/${owner}/${repo}
 compare_branch=${COMPARE_BRANCH:-develop}
 show_all_commit=${SHOW_ALL_COMMIT}
 
-last_release_tag=$(git tag -l 'v*' --sort=-v:refname | head -1)
+last_release_tag=$(git tag -l --sort=-v:refname | head -1)
 commits=$(git log --oneline --no-merges "${last_release_tag}..${compare_branch}")
 
 IFS=$'\n'
