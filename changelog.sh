@@ -8,7 +8,7 @@ repo=${GITHUB_REPO}
 repository_url=https://github.com/${owner}/${repo}
 compare_branch=develop
 
-echo "## Changes"
+#echo "## Changes"
 
 LAST_RELEASE_TAG=$(git tag -l 'v*' --sort=-v:refname | head -1)
 

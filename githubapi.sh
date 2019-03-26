@@ -20,6 +20,8 @@ data=`cat << EOF
 }
 EOF`
 
+echo $data
+
 curl -X POST \
   --data "${data}" \
   -H "Accept: application/vnd.github.v3+json" \
